@@ -9,12 +9,12 @@ import { motion } from "framer-motion";
 //   { name: "EstateFlow", width: "w-28" },
 // ];
 const partners = [
-  { name: "EFS", logo: "./public/client-1.png" },
-  { name: "Betterhomes", logo: "./public/client-2.png" },
-  { name: "UDC", logo: "./public/client-3.png" },
-  { name: "Al Sraiya", logo: "./public/client-4.png" },
-  { name: "Durat Al Doha", logo: "./public/client-5.png" },
-  { name: "Qatar Foundation", logo: "./public/client-6.png" },
+  { name: "EFS", logo: "/client-1.png" },
+  { name: "Betterhomes", logo: "/client-2.png" },
+  { name: "UDC", logo: "/client-3.png" },
+  { name: "Al Sraiya", logo: "/client-4.png" },
+  { name: "Durat Al Doha", logo: "/client-5.png" },
+  { name: "Qatar Foundation", logo: "/client-6.png" },
 ];
 
 const TrustedBy = () => {
