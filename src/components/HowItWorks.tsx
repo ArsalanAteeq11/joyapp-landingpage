@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Send, UserCheck, CheckCircle } from "lucide-react";
+import { Send, UserCheck, Wrench, CheckCircle } from "lucide-react";
 
 const steps = [
   {
@@ -15,8 +15,14 @@ const steps = [
     description: "Property managers receive notifications and assign tasks to the right team members.",
   },
   {
-    icon: CheckCircle,
+    icon: Wrench,
     step: "03",
+    title: "Technician Repairs",
+    description: "Technician receives the task, visits the property, and completes the repair work.",
+  },
+  {
+    icon: CheckCircle,
+    step: "04",
     title: "Issue Resolved & Rated",
     description: "Tasks are completed, tracked, and tenants provide feedback for continuous improvement.",
   },
@@ -47,10 +53,8 @@ const HowItWorks = () => {
         </motion.div>
 
         {/* Steps */}
-        <div className="grid md:grid-cols-3 gap-8 lg:gap-12 relative">
-          {/* Connecting Line */}
-          <div className="hidden md:block absolute top-24 left-1/4 right-1/4 h-0.5 bg-border overflow-hidden" />
-          
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-8 relative">
+
           {steps.map((step, index) => (
             <motion.div
               key={step.title}
@@ -58,22 +62,27 @@ const HowItWorks = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="relative text-center"
+              className="relative text-center group"
             >
+              {/* Connector Line (visible on desktop) */}
+              {index < steps.length - 1 && (
+                <div className="hidden lg:block absolute top-[2.5rem] left-[60%] w-[80%] h-0.5 bg-gray-100 group-hover:bg-orange-100 transition-colors duration-500" />
+              )}
+
               {/* Step Number */}
-              <div className="relative inline-flex mb-6">
-                <div className="w-20 h-20 rounded-2xl bg-primary flex items-center justify-center shadow-orange">
-                  <step.icon className="w-8 h-8 text-primary-foreground" />
+              <div className="relative inline-flex mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-20 h-20 rounded-2xl bg-white border border-gray-100 shadow-lg flex items-center justify-center group-hover:border-orange-200 transition-colors duration-300">
+                  <step.icon className="w-8 h-8 text-orange-500" />
                 </div>
-                <span className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-foreground text-background text-sm font-bold flex items-center justify-center">
+                <span className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-foreground text-background text-sm font-bold flex items-center justify-center border-4 border-white">
                   {step.step}
                 </span>
               </div>
-              
+
               <h3 className="font-display text-xl font-bold text-foreground mb-3">
                 {step.title}
               </h3>
-              <p className="text-muted-foreground leading-relaxed max-w-xs mx-auto">
+              <p className="text-muted-foreground leading-relaxed max-w-xs mx-auto text-sm">
                 {step.description}
               </p>
             </motion.div>

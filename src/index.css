@@ -2,60 +2,66 @@
 @import "tailwindcss";
 
 /* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
 
 /* ===============================
    THEME TOKENS (Tailwind v4)
 ================================ */
 @theme {
-  --color-background: hsl(0 0% 100%);
-  --color-foreground: hsl(210 22% 16%);
+  --color-background: hsl(0 0% 98%);
+  --color-foreground: hsl(220 20% 12%);
 
   --color-card: hsl(0 0% 100%);
-  --color-card-foreground: hsl(210 22% 16%);
+  --color-card-foreground: hsl(220 20% 12%);
 
   --color-popover: hsl(0 0% 100%);
-  --color-popover-foreground: hsl(210 22% 16%);
+  --color-popover-foreground: hsl(220 20% 12%);
 
-  --color-primary: hsl(24 94% 53%);
+  --color-primary: hsl(24 95% 53%);
   --color-primary-foreground: hsl(0 0% 100%);
 
-  --color-secondary: hsl(220 14% 96%);
-  --color-secondary-foreground: hsl(210 22% 16%);
+  --color-secondary: hsl(220 10% 94%);
+  --color-secondary-foreground: hsl(220 20% 12%);
 
-  --color-muted: hsl(220 14% 96%);
-  --color-muted-foreground: hsl(220 9% 46%);
+  --color-muted: hsl(220 10% 94%);
+  --color-muted-foreground: hsl(220 8% 40%);
 
-  --color-accent: hsl(24 100% 51%);
+  --color-accent: hsl(24 100% 55%);
   --color-accent-foreground: hsl(0 0% 100%);
 
   --color-destructive: hsl(0 84% 60%);
   --color-destructive-foreground: hsl(0 0% 100%);
 
-  --color-border: hsl(220 13% 91%);
-  --color-input: hsl(220 13% 91%);
-  --color-ring: hsl(24 94% 53%);
+  --color-border: hsl(220 13% 90%);
+  --color-input: hsl(220 13% 90%);
+  --color-ring: hsl(24 95% 53%);
 
   --radius-lg: 0.75rem;
 
   /* Custom Joy Colors */
-  --color-dark-gray: hsl(210 22% 16%);
-  --color-medium-gray: hsl(220 9% 46%);
-  --color-light-gray: hsl(220 14% 96%);
-  --color-orange-light: hsl(24 100% 95%);
-  --color-orange-hover: hsl(24 100% 45%);
+  --color-dark-gray: hsl(220 20% 12%);
+  --color-medium-gray: hsl(220 8% 46%);
+  --color-light-gray: hsl(220 10% 96%);
+  --color-orange-light: hsl(24 100% 96%);
+  --color-orange-hover: hsl(24 100% 48%);
+
+  /* Glass Colors */
+  --color-glass: rgba(255, 255, 255, 0.7);
+  --color-glass-border: rgba(255, 255, 255, 0.5);
 
   /* Gradients */
-  --gradient-orange: linear-gradient(
-    135deg,
-    rgb(255, 111, 3) 0%,
-    rgb(255, 140, 40) 100%
-  );
+  --gradient-orange: linear-gradient(135deg,
+      hsl(24 100% 55%) 0%,
+      hsl(32 100% 55%) 100%);
+  --gradient-subtle: linear-gradient(to bottom right,
+      hsl(0 0% 100%) 0%,
+      hsl(220 10% 98%) 100%);
 
   /* Shadows */
-  --shadow-card: 0 4px 20px -2px hsl(210 22% 16% / 0.08);
-  --shadow-card-hover: 0 12px 40px -8px hsl(210 22% 16% / 0.15);
-  --shadow-orange: 0 8px 30px -4px rgb(255 111 3 / 0.35);
+  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  --shadow-card-hover: 0 20px 40px -8px rgba(0, 0, 0, 0.08);
+  --shadow-orange: 0 10px 30px -4px rgba(255, 111, 3, 0.4);
+  --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
 }
 
 /* ===============================
@@ -73,22 +79,10 @@
   border-color: var(--color-border);
 }
 
-@utility bg-card {
-  background-color: var(--color-card);
-}
-
-@utility text-muted-foreground {
-  color: var(--color-muted-foreground);
-}
-
 /* ===============================
    BASE STYLES
 ================================ */
 @layer base {
-  * {
-    @apply border-border;
-  }
-
   html {
     scroll-behavior: smooth;
   }
@@ -96,10 +90,18 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', sans-serif;
+    letter-spacing: -0.01em;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: -0.02em;
+    @apply text-foreground;
   }
 }
 
@@ -115,64 +117,92 @@
     @apply max-w-7xl mx-auto;
   }
 
+  .glass-panel {
+    @apply backdrop-blur-md border border-white/50 shadow-sm transition-all duration-300;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 100%);
+  }
+
+  .glass-nav {
+    @apply backdrop-blur-xl border border-white/20 shadow-sm;
+    background: rgba(255, 255, 255, 0.6);
+  }
+
   .text-gradient-orange {
     @apply bg-clip-text text-transparent;
     background-image: var(--gradient-orange);
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300;
+    @apply inline-flex items-center justify-center px-8 py-3.5 rounded-full font-semibold text-white transition-all duration-300 shadow-lg text-sm tracking-wide;
     background: var(--gradient-orange);
     box-shadow: var(--shadow-orange);
   }
 
   .btn-primary:hover {
-    @apply -translate-y-0.5;
+    @apply -translate-y-1 shadow-xl;
+    filter: brightness(1.05);
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold border-2 transition-all duration-300;
-    border-color: var(--dark-gray);
-    color: var(--dark-gray);
+    @apply inline-flex items-center justify-center px-8 py-3.5 rounded-full font-semibold border transition-all duration-300 text-sm tracking-wide bg-white/50 backdrop-blur-sm border-gray-200 text-gray-700;
   }
 
   .btn-secondary:hover {
-    background-color: var(--dark-gray);
-    color: white;
-    transform: translateY(-2px);
+    @apply bg-white border-gray-300 text-gray-900 -translate-y-1 shadow-md;
   }
 
-  .card-hover {
-    @apply transition-all duration-300;
-    box-shadow: var(--shadow-card);
+  .card-minimal {
+    @apply bg-white rounded-2xl border border-gray-100 p-8 transition-all duration-500 hover:shadow-card-hover hover:-translate-y-1;
   }
 
-  .card-hover:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-card-hover);
-  }
-
-  .floating-animation {
+  /* Animations */
+  .animate-float {
     animation: float 6s ease-in-out infinite;
   }
 
+  .animate-float-delayed {
+    animation: float 6s ease-in-out 3s infinite;
+  }
+
   @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
   }
 
-  .fade-up {
-    animation: fadeUp 0.6s ease-out forwards;
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
   }
 
-  @keyframes fadeUp {
+  @keyframes fadeIn {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(20px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
   }
 }

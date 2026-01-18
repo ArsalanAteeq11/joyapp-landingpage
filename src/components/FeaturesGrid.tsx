@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
-import { 
-  TrendingUp, 
-  Users, 
-  Eye, 
-  DollarSign, 
-  Shield, 
-  Sparkles 
+import {
+  TrendingUp,
+  Users,
+  Eye,
+  DollarSign,
+  Shield,
+  Sparkles
 } from "lucide-react";
 
 const features = [
@@ -42,9 +42,11 @@ const features = [
 ];
 
 const FeaturesGrid = () => {
-  return ( 
-    <section id="features" className="section-padding bg-secondary/50 overflow-hidden">
-      <div className="container-narrow mx-auto">
+  return (
+    <section id="features" className="section-padding bg-secondary/30 overflow-hidden relative">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white via-transparent to-transparent opacity-50 pointer-events-none"></div>
+
+      <div className="container-narrow mx-auto relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -57,11 +59,12 @@ const FeaturesGrid = () => {
             Features
           </span>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Built for Real Property Challenges{" "}
+            Built for Real Property{" "}
             <span className="text-gradient-orange">Challenges</span>
           </h2>
           <p className="text-lg text-muted-foreground">
-Everything you need to manage properties smoothly — without spreadsheets, long follow-ups, or confusion.          </p>
+            Everything you need to manage properties smoothly — without spreadsheets, long follow-ups, or confusion.
+          </p>
         </motion.div>
 
         {/* Features Grid */}
@@ -73,15 +76,18 @@ Everything you need to manage properties smoothly — without spreadsheets, long
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group bg-background rounded-2xl p-8 card-hover cursor-default"
+              className="group bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 relative overflow-hidden"
             >
-              <div className="w-14 h-14 rounded-xl bg-orange-light flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <feature.icon className="w-7 h-7 text-primary" />
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-orange-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+
+              <div className="w-14 h-14 rounded-xl bg-orange-50 flex items-center justify-center mb-6 group-hover:bg-orange-500 transition-colors duration-300">
+                <feature.icon className="w-7 h-7 text-orange-500 group-hover:text-white transition-colors duration-300" />
               </div>
-              <h3 className="font-display text-xl font-bold text-foreground mb-3">
+
+              <h3 className="font-display text-xl font-bold text-foreground mb-3 group-hover:text-orange-600 transition-colors duration-300">
                 {feature.title}
               </h3>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed group-hover:text-gray-600">
                 {feature.description}
               </p>
             </motion.div>

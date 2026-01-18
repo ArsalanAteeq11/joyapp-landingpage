@@ -15,7 +15,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -23,91 +23,100 @@ const Navbar = () => {
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-            ? "bg-primary/95 backdrop-blur-md shadow-lg py-1"
-            : "bg-primary py-2"
-          }`}
-      >
-        <div className="container-narrow mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4">
+        <motion.nav
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className={`w-full max-w-5xl transition-all duration-500 ease-in-out ${isScrolled
+            ? "bg-gray-900/80 backdrop-blur-md border border-white/10 shadow-lg rounded-full px-6 py-3"
+            : "bg-gray-900/90 backdrop-blur-sm border border-white/5 rounded-full px-6 py-4 mt-2"
+            }`}
+        >
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <img src="/logo.png" alt="" className="h-14 w-auto" />
+            <a href="/" className="flex items-center gap-2 group">
+              <div className="relative flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+                <img src="/logo.png" alt="JoyApp" className="h-10 w-auto object-contain brightness-0 invert" />
+              </div>
+            </a>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
               {navLinks.map((link, index) => (
-                <motion.a
+                <a
                   key={link.name}
                   href={link.href}
-                  className="font-medium link-underline transition-colors text-white hover:text-white"
-
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 + 0.3 }}
-
+                  className="relative font-medium text-sm text-gray-300 hover:text-white transition-colors duration-300"
                 >
                   {link.name}
-                </motion.a>
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover:w-full"></span>
+                </a>
               ))}
             </div>
 
             {/* CTA Button */}
-            <div className=" flex items-center">
-              <a href="#contact" className="inline-flex items-center justify-center px-4 py-1 sm:px-5 sm:py-2 rounded-xl font-semibold text-white hover:text-primary hover:bg-white border-2 border-white transition-all duration-300 ">
+            <div className="hidden md:flex items-center">
+              <a
+                href="#pricing"
+                className={`px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${isScrolled
+                  ? "bg-primary text-white hover:bg-orange-600 shadow-md hover:shadow-lg"
+                  : "bg-white text-primary shadow-sm hover:shadow-md border border-gray-100"
+                  }`}
+              >
                 Get Started
               </a>
+            </div>
+
             {/* Mobile Menu Button */}
             <button
               className="md:hidden p-2 text-white"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              {isMobileMenuOpen ? <X size={32} /> : <Menu size={32} />}
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
-            </div>
-
           </div>
-        </div>
-      </motion.nav>
+        </motion.nav>
+      </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed inset-0 z-40 bg-background md:hidden"
+            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            animate={{ opacity: 1, backdropFilter: "blur(12px)" }}
+            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            className="fixed inset-0 z-40 bg-white/60 md:hidden"
+            onClick={() => setIsMobileMenuOpen(false)}
           >
-            <div className="flex flex-col items-center justify-center h-full gap-8">
-              {navLinks.map((link, index) => (
-                <motion.a
-                  key={link.name}
-                  href={link.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="text-2xl font-display font-semibold text-foreground"
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="absolute top-24 left-4 right-4 bg-white rounded-3xl shadow-xl border border-gray-100 p-6"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex flex-col gap-6">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="text-lg font-semibold text-foreground hover:text-primary transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.name}
+                  </a>
+                ))}
+                <div className="h-px bg-gray-100 w-full my-2"></div>
+                <a
+                  href="#pricing"
+                  className="btn-primary w-full"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {link.name}
-                </motion.a>
-              ))}
-              {/* <motion.a
-                href="#contact"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="btn-primary"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Get Started
-              </motion.a> */}
-            </div>
+                  Get Started
+                </a>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

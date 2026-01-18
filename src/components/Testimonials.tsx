@@ -75,27 +75,21 @@ const Testimonials = () => {
         {/* Slider */}
         <div className="relative">
           <div className="flex overflow-hidden">
-            <motion.div
-              className="flex gap-6"
-              animate={{ x: paused ? "0%" : ["0%", "-50%"] }}
-              transition={{
-                duration: 30,
-                repeat: Infinity,
-                ease: "linear",
-              }}
+            <div
+              className="flex gap-6 animate-marquee"
+              style={{ animationPlayState: paused ? "paused" : "running" }}
+              onMouseEnter={() => setPaused(true)}
+              onMouseLeave={() => setPaused(false)}
             >
               {[...testimonials, ...testimonials].map((t, index) => (
                 <div
                   key={index}
-                  onMouseEnter={() => setPaused(true)}
-                  onMouseLeave={() => setPaused(false)}
-                  onClick={() => setPaused(true)}
                   className="
                     shrink-0 
                     w-[280px] sm:w-[320px] lg:w-[360px]
                     bg-secondary rounded-2xl p-6 
                     cursor-pointer
-                    hover:scale-[1.02] transition
+                    hover:scale-[1.02] transition-transform duration-300
                   "
                 >
                   {/* Quote icon */}
@@ -130,7 +124,7 @@ const Testimonials = () => {
                   </div>
                 </div>
               ))}
-            </motion.div>
+            </div>
           </div>
 
           {/* Fade edges */}
