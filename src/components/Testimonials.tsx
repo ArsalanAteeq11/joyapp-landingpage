@@ -62,7 +62,7 @@ const Testimonials = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto mb-14"
+          className="text-center max-w-3xl mx-auto mb-12"
         >
           <span className="inline-block px-4 py-2 rounded-full bg-orange-light text-primary text-sm font-semibold mb-4">
             Testimonials

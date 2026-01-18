@@ -3,7 +3,7 @@ import { ArrowRight, CheckCircle2, PlayCircle } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-background mt-20">
+    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-background mt-16">
       {/* Abstract Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-orange-200/40 rounded-full blur-[100px] animate-float-delayed" />
@@ -11,7 +11,7 @@ const HeroSection = () => {
       </div>
 
       <div className="container-narrow mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+        <div className="flex flex-col lg:flex-row  gap-12 lg:gap-20">
 
           {/* Content */}
           <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
@@ -31,8 +31,8 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              Connect. Manage. <br />
-              <span className="text-gradient-orange">Thrive.</span>
+              Bringing Joy to the
+              <span className="text-gradient-orange">Tenant Experience</span>
             </motion.h1>
 
             <motion.p
@@ -41,9 +41,9 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              Experience the elegant way to manage properties.
-              JoyApp brings harmony to landlords and tenants through
-              intelligent automation and beautiful design.
+              We believe in making living better and providing the best experience for your tenants.
+              Joy gives you the data and insight you need to make informed decisions
+              that increase the value of your property to boost rental returns.
             </motion.p>
 
             <motion.div
@@ -56,10 +56,6 @@ const HeroSection = () => {
                 Start Free Trial
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
-              <button className="btn-secondary group">
-                <PlayCircle className="mr-2 w-5 h-5 text-gray-400 group-hover:text-primary transition-colors" />
-                Watch Demo
-              </button>
             </motion.div>
 
             <motion.div
@@ -68,14 +64,6 @@ const HeroSection = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              {/* <div className="flex items-center gap-1.5 transform hover:scale-105 transition-transform duration-300 cursor-default">
-                <CheckCircle2 className="w-4 h-4 text-green-500" />
-                <span>No credit card</span>
-              </div>
-              <div className="flex items-center gap-1.5 transform hover:scale-105 transition-transform duration-300 cursor-default">
-                <CheckCircle2 className="w-4 h-4 text-green-500" />
-                <span>14-day free trial</span>
-              </div> */}
             </motion.div>
           </div>
 

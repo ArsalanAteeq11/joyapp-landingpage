@@ -57,15 +57,17 @@ const Navbar = () => {
 
             {/* CTA Button */}
             <div className="hidden md:flex items-center">
-              <a
+              <motion.a
                 href="#pricing"
-                className={`px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${isScrolled
-                  ? "bg-primary text-white hover:bg-orange-600 shadow-md hover:shadow-lg"
-                  : "bg-white text-primary shadow-sm hover:shadow-md border border-gray-100"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${isScrolled
+                  ? "bg-primary text-white shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 hover:bg-orange-600"
+                  : "bg-white text-primary shadow-lg shadow-gray-200/50 hover:shadow-xl hover:shadow-gray-200/60 border border-gray-100"
                   }`}
               >
                 Get Started
-              </a>
+              </motion.a>
             </div>
 
             {/* Mobile Menu Button */}

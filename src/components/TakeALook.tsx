@@ -6,7 +6,6 @@ const features = [
   "Push notifications for urgent issues",
   "Document & photo attachments",
   "Multi-language support",
-  "Offline mode capability",
   "Customizable workflows",
 ];
 
@@ -31,7 +30,7 @@ const TakeALook = () => {
               <span className="text-gradient-orange">Future</span> of Property Management
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
-              Our intuitive interface puts everything you need at your fingertips. 
+              Our intuitive interface puts everything you need at your fingertips.
               Manage properties, communicate with tenants, and track performance—all in one place.
             </p>
 
@@ -56,7 +55,7 @@ const TakeALook = () => {
           </motion.div>
 
           {/* Stacked Mobile Screens */}
-         <motion.div
+          <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
