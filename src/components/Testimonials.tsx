@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
+import { useState } from "react";
 
 const testimonials = [
   {
@@ -7,7 +8,8 @@ const testimonials = [
     role: "Property Manager",
     company: "Qatar Estates",
     rating: 5,
-    quote: "Joy App transformed how we manage our 150+ properties. Tenant satisfaction increased by 40% in just 3 months. The AI predictions are incredibly accurate.",
+    quote:
+      "Joy App transformed how we manage our 150+ properties. Tenant satisfaction increased by 40% in just 3 months.",
     avatar: "SA",
   },
   {
@@ -15,7 +17,8 @@ const testimonials = [
     role: "CEO",
     company: "Gulf Property Group",
     rating: 5,
-    quote: "The best investment we've made for our operations. Response times dropped from days to hours, and our team productivity doubled.",
+    quote:
+      "The best investment we've made. Response times dropped from days to hours.",
     avatar: "MH",
   },
   {
@@ -23,7 +26,8 @@ const testimonials = [
     role: "Operations Director",
     company: "Doha Living",
     rating: 5,
-    quote: "Finally, a property management solution that understands the Qatar market. The Arabic support and local compliance features are exceptional.",
+    quote:
+      "Finally, a solution that understands the Qatar market with Arabic support.",
     avatar: "FA",
   },
   {
@@ -31,7 +35,8 @@ const testimonials = [
     role: "Facility Manager",
     company: "Pearl Residences",
     rating: 5,
-    quote: "We reduced maintenance costs by 35% using Joy App's predictive analytics. The ROI was visible within the first quarter.",
+    quote:
+      "We reduced maintenance costs by 35% using Joy App analytics.",
     avatar: "JW",
   },
   {
@@ -39,120 +44,99 @@ const testimonials = [
     role: "Managing Partner",
     company: "Lusail Properties",
     rating: 5,
-    quote: "Our tenants love the transparency. They can track everything in real-time, which has significantly reduced complaint calls.",
+    quote:
+      "Our tenants love the transparency and real-time tracking.",
     avatar: "NA",
-  },
-  {
-    name: "Ahmed Rashid",
-    role: "Head of Real Estate",
-    company: "Investment Holdings",
-    rating: 5,
-    quote: "Joy App's reporting dashboard gives us insights we never had before. Decision-making is now data-driven and confident.",
-    avatar: "AR",
   },
 ];
 
 const Testimonials = () => {
+  const [paused, setPaused] = useState(false);
+
   return (
     <section className="section-padding bg-background overflow-hidden">
-      <div className="container-narrow mx-auto">
-        {/* Section Header */}
+      <div className="container-custom">
+
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-3xl mx-auto mb-14"
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-orange-light text-primary font-semibold text-sm mb-6">
+          <span className="inline-block px-4 py-2 rounded-full bg-orange-light text-primary text-sm font-semibold mb-4">
             Testimonials
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Loved by Property{" "}
-            <span className="text-gradient-orange">Managers</span>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold">
+            Loved by <span className="text-gradient-orange">Managers</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
-            Join hundreds of property companies across Qatar who trust Joy App to streamline their operations.
-          </p>
         </motion.div>
 
-        {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.map((testimonial, index) => (
+        {/* Slider */}
+        <div className="relative">
+          <div className="flex overflow-hidden">
             <motion.div
-              key={testimonial.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group bg-secondary rounded-2xl p-6 lg:p-8 card-hover relative"
+              className="flex gap-6"
+              animate={{ x: paused ? "0%" : ["0%", "-50%"] }}
+              transition={{
+                duration: 30,
+                repeat: Infinity,
+                ease: "linear",
+              }}
             >
-              {/* Quote Icon */}
-              <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                <Quote className="w-12 h-12 text-primary" />
-              </div>
+              {[...testimonials, ...testimonials].map((t, index) => (
+                <div
+                  key={index}
+                  onMouseEnter={() => setPaused(true)}
+                  onMouseLeave={() => setPaused(false)}
+                  onClick={() => setPaused(true)}
+                  className="
+                    shrink-0 
+                    w-[280px] sm:w-[320px] lg:w-[360px]
+                    bg-secondary rounded-2xl p-6 
+                    cursor-pointer
+                    hover:scale-[1.02] transition
+                  "
+                >
+                  {/* Quote icon */}
+                  <Quote className="w-10 h-10 text-primary opacity-10 mb-4" />
 
-              {/* Star Rating */}
-              <div className="flex gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className="w-5 h-5 fill-primary text-primary"
-                  />
-                ))}
-              </div>
+                  {/* Stars */}
+                  <div className="flex gap-1 mb-3">
+                    {[...Array(t.rating)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className="w-4 h-4 fill-primary text-primary"
+                      />
+                    ))}
+                  </div>
 
-              {/* Quote */}
-              <p className="text-foreground mb-6 leading-relaxed relative z-10">
-                "{testimonial.quote}"
-              </p>
-
-              {/* Author */}
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-semibold">
-                  {testimonial.avatar}
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">{testimonial.name}</p>
-                  <p className="text-sm text-muted-foreground">
-                    {testimonial.role}, {testimonial.company}
+                  {/* Text */}
+                  <p className="text-sm sm:text-base text-foreground mb-6">
+                    “{t.quote}”
                   </p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
 
-        {/* Stats Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-16 bg-foreground rounded-2xl p-8 lg:p-12"
-        >
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-            {[
-              { value: "500+", label: "Properties Managed" },
-              { value: "98%", label: "Customer Satisfaction" },
-              { value: "45%", label: "Cost Reduction" },
-              { value: "24/7", label: "Support Available" },
-            ].map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 * index }}
-              >
-                <p className="font-display text-3xl lg:text-4xl font-bold text-primary mb-2">
-                  {stat.value}
-                </p>
-                <p className="text-muted text-sm lg:text-base">{stat.label}</p>
-              </motion.div>
-            ))}
+                  {/* Author */}
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white text-sm font-semibold">
+                      {t.avatar}
+                    </div>
+                    <div>
+                      <p className="font-semibold text-sm">{t.name}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {t.role}, {t.company}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
           </div>
-        </motion.div>
+
+          {/* Fade edges */}
+          <div className="absolute top-0 left-0 h-full w-20 bg-linear-to-r from-background to-transparent pointer-events-none" />
+          <div className="absolute top-0 right-0 h-full w-20 bg-linear-to-l from-background to-transparent pointer-events-none" />
+        </div>
       </div>
     </section>
   );

@@ -27,44 +27,48 @@ const Navbar = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? "bg-primary/95 backdrop-blur-md shadow-lg py-2"
-            : "bg-primary py-3"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+            ? "bg-primary/95 backdrop-blur-md shadow-lg py-1"
+            : "bg-primary py-2"
+          }`}
       >
         <div className="container-narrow mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Logo */}
-           <img src="/logo.png" alt="" className="h-16 w-auto" />
+            <img src="/logo.png" alt="" className="h-14 w-auto" />
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) => (
-                <a
+              {navLinks.map((link, index) => (
+                <motion.a
                   key={link.name}
                   href={link.href}
-                  className="text-white hover:text-foreground font-medium transition-colors duration-200"
+                  className="font-medium link-underline transition-colors text-white hover:text-white"
+
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 + 0.3 }}
+
                 >
                   {link.name}
-                </a>
+                </motion.a>
               ))}
             </div>
 
             {/* CTA Button */}
-            <div className="hidden md:block">
-              <a href="#contact" className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold text-white border-2 border-white transition-all duration-300">
+            <div className=" flex items-center">
+              <a href="#contact" className="inline-flex items-center justify-center px-4 py-1 sm:px-5 sm:py-2 rounded-xl font-semibold text-white hover:text-primary hover:bg-white border-2 border-white transition-all duration-300 ">
                 Get Started
               </a>
-            </div>
-
             {/* Mobile Menu Button */}
             <button
               className="md:hidden p-2 text-white"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={28} />}
+              {isMobileMenuOpen ? <X size={32} /> : <Menu size={32} />}
             </button>
+            </div>
+
           </div>
         </div>
       </motion.nav>
@@ -93,16 +97,16 @@ const Navbar = () => {
                   {link.name}
                 </motion.a>
               ))}
-              <motion.a
+              {/* <motion.a
                 href="#contact"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="btn-primary mt-4"
+                className="btn-primary"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Get Started
-              </motion.a>
+              </motion.a> */}
             </div>
           </motion.div>
         )}

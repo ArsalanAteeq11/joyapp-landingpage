@@ -20,7 +20,7 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <img src="/logo.png" alt="" className="h-16 w-auto mb-4" />
-            <p className="text-muted-foreground mb-6 max-w-xs">
+            <p className="text-muted mb-6 max-w-xs">
               Transforming property management with smart technology and exceptional user experience.
             </p>
             
@@ -48,7 +48,7 @@ const Footer = () => {
                   <li key={link}>
                     <a
                       href="#"
-                      className="text-muted-foreground hover:text-primary-foreground transition-colors"
+                      className="text-primary-foreground transition-colors"
                     >
                       {link}
                     </a>
@@ -60,20 +60,20 @@ const Footer = () => {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-muted-foreground/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-muted-foreground text-sm">
+        <div className="border-t border-muted-foreground/20 pt-8 flex flex-col md:flex-row justify-center items-center gap-4">
+          <p className="text-muted text-center text-sm">
             © 2024 Joy App. All rights reserved. Built with ❤️ in Qatar 🇶🇦
           </p>
           
           {/* Back to Top */}
-          <motion.button
+          {/* <motion.button
             onClick={scrollToTop}
             whileHover={{ y: -3 }}
             className="flex items-center gap-2 px-4 py-2 rounded-xl bg-muted-foreground/10 hover:bg-primary text-muted-foreground hover:text-primary-foreground transition-colors"
           >
             <ArrowUp className="w-4 h-4" />
             <span className="text-sm font-medium">Back to Top</span>
-          </motion.button>
+          </motion.button> */}
         </div>
       </div>
     </footer>

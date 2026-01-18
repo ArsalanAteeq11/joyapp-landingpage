@@ -1,13 +1,5 @@
 import { motion } from "framer-motion";
 
-// const partners = [
-//   { name: "PropertyCo", width: "w-28" },
-//   { name: "RealEstate+", width: "w-32" },
-//   { name: "HomeGuard", width: "w-28" },
-//   { name: "BuildTech", width: "w-24" },
-//   { name: "UrbanLiving", width: "w-30" },
-//   { name: "EstateFlow", width: "w-28" },
-// ];
 const partners = [
   { name: "EFS", logo: "/client-1.png" },
   { name: "Betterhomes", logo: "/client-2.png" },
@@ -63,58 +55,6 @@ const TrustedBy = () => {
         </div>
       </div>
     </section>
-    // <section className="py-16 bg-background border-y border-border overflow-hidden">
-    //   <div className="container-narrow mx-auto px-4 sm:px-6 lg:px-8">
-    //     <motion.div
-    //       initial={{ opacity: 0, y: 20 }}
-    //       whileInView={{ opacity: 1, y: 0 }}
-    //       viewport={{ once: true }}
-    //       transition={{ duration: 0.6 }}
-    //       className="text-center mb-10"
-    //     >
-    //       <p className="text-muted-foreground font-medium uppercase tracking-wider text-sm">
-    //         Trusted by leading property companies
-    //       </p>
-    //     </motion.div>
-
-    //     <motion.div
-    //       initial={{ opacity: 0 }}
-    //       whileInView={{ opacity: 1 }}
-    //       viewport={{ once: true }}
-    //       transition={{ duration: 0.8, delay: 0.2 }}
-    //       className="flex flex-wrap justify-center items-center gap-8 lg:gap-16"
-    //     >
-    //       {partners.map((partner, index) => (
-    //         <motion.div
-    //           key={partner.name}
-    //           initial={{ opacity: 0, y: 10 }}
-    //           whileInView={{ opacity: 1, y: 0 }}
-    //           viewport={{ once: true }}
-    //           transition={{ delay: index * 0.1 }}
-    //           className={`w-8 h-8 bg-muted-foreground/20 rounded-lg flex items-center justify-center text-muted-foreground/60 font-semibold text-sm hover:bg-muted-foreground/30 transition-colors cursor-default`}
-    //         >
-    //           {partner.name}
-    //         </motion.div>
-    //       ))}
-    //     </motion.div>
-
-    //     {/* Built in Qatar Badge */}
-    //     <motion.div
-    //       initial={{ opacity: 0, y: 20 }}
-    //       whileInView={{ opacity: 1, y: 0 }}
-    //       viewport={{ once: true }}
-    //       transition={{ duration: 0.6, delay: 0.4 }}
-    //       className="flex justify-center mt-10"
-    //     >
-    //       <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary border border-border">
-    //         <span className="text-2xl">🇶🇦</span>
-    //         <span className="text-sm font-medium text-muted-foreground">
-    //           Proudly Built in Qatar
-    //         </span>
-    //       </div>
-    //     </motion.div>
-    //   </div>
-    // </section>
   );
 };
 
