@@ -76,7 +76,7 @@ const FeaturesGrid = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 relative overflow-hidden"
+              className="group bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 relative overflow-hidden flex flex-col items-center sm:items-start"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-orange-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
 
@@ -84,10 +84,10 @@ const FeaturesGrid = () => {
                 <feature.icon className="w-7 h-7 text-orange-500 group-hover:text-white transition-colors duration-300" />
               </div>
 
-              <h3 className="font-display text-xl font-bold text-foreground mb-3 group-hover:text-orange-600 transition-colors duration-300">
+              <h3 className="font-display text-xl font-bold text-foreground mb-3 group-hover:text-orange-600 transition-colors duration-300 text-center sm:text-left">
                 {feature.title}
               </h3>
-              <p className="text-muted-foreground leading-relaxed group-hover:text-gray-600">
+              <p className="text-muted-foreground leading-relaxed group-hover:text-gray-600 text-center sm:text-left">
                 {feature.description}
               </p>
             </motion.div>
