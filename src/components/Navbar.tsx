@@ -25,10 +25,10 @@ const Navbar = () => {
     <>
       <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4">
         <motion.nav
-          initial={{ y: -100, opacity: 0 }}
+          initial={{ y: -150, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className={`w-full max-w-5xl transition-all duration-500 ease-in-out ${isScrolled
+          className={`w-full max-w-5xl transition-[padding,margin,background-color,border-color,box-shadow,backdrop-filter] duration-500 ease-in-out ${isScrolled
             ? "bg-gray-900/80 backdrop-blur-md border border-white/10 shadow-lg rounded-full px-6 py-3"
             : "bg-gray-900/90 backdrop-blur-sm border border-white/5 rounded-full px-6 py-4 mt-2"
             }`}
