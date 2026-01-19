@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, MapPin, Phone, Mail, Linkedin, Twitter, TwitterIcon, X, XCircle, TwitchIcon, LucideTwitter, Instagram, LinkedinIcon, Facebook } from "lucide-react";
+import { Send, MapPin, Mail, Linkedin, Instagram, Facebook } from "lucide-react";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    company: "",
     message: "",
   });
 

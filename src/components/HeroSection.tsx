@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, PlayCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-background mt-16">
+    <section className="relative flex items-center pt-20 overflow-hidden bg-background mt-16">
       {/* Abstract Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-orange-200/40 rounded-full blur-[100px] animate-float-delayed" />
