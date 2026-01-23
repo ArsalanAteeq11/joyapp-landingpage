@@ -66,7 +66,7 @@ const HowItWorks = () => {
             >
               {/* Connector Line (visible on desktop) */}
               {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-[2.5rem] left-[60%] w-[80%] h-0.5 bg-gray-100 group-hover:bg-orange-100 transition-colors duration-500" />
+                <div className="hidden lg:block absolute top-[2.5rem] left-[60%] w-[100%] h-0.5 bg-gray-100 group-hover:bg-orange-100 transition-colors duration-500" />
               )}
 
               {/* Step Number */}

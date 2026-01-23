@@ -1,3 +1,4 @@
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import {
   TrendingUp,
@@ -5,49 +6,118 @@ import {
   Eye,
   DollarSign,
   Shield,
-  Sparkles
+  Sparkles,
+  Settings,
+  BarChart3,
+  Clock,
+  Bell,
+  FileText,
+  CheckCircle,
 } from "lucide-react";
 
 const features = [
   {
     icon: TrendingUp,
     title: "Predict Tenant Issues Early",
-    description: "Identify dissatisfaction trends before tenants decide to leave, using smart insights from real data.",
+    description:
+      "Identify dissatisfaction trends before tenants decide to leave, using smart insights from real data.",
   },
   {
     icon: Users,
     title: "Get More Done with the Same Team",
-    description: "Assign tasks faster, track progress easily, and reduce staff downtime.",
+    description:
+      "Assign tasks faster, track progress easily, and reduce staff downtime.",
   },
   {
     icon: Eye,
     title: "Full Visibility for Tenants",
-    description: "Tenants can see request status, updates, and responses — no more endless follow-ups.",
+    description:
+      "Tenants can see request status, updates, and responses — no more endless follow-ups.",
   },
   {
     icon: DollarSign,
     title: "Control Maintenance Costs",
-    description: "Track expenses, reduce unnecessary repairs, and make smarter maintenance decisions.",
+    description:
+      "Track expenses, reduce unnecessary repairs, and make smarter maintenance decisions.",
   },
   {
     icon: Shield,
     title: "Structured Complaint Handling",
-    description: "Every issue follows a clear workflow — logged, assigned, resolved, and reviewed.",
+    description:
+      "Every issue follows a clear workflow — logged, assigned, resolved, and reviewed.",
   },
   {
     icon: Sparkles,
     title: "Designed for Non-Technical Users",
-    description: "Simple, clean interface that anyone can use without training.",
+    description:
+      "Simple, clean interface that anyone can use without training.",
+  },
+  {
+    icon: Settings,
+    title: "Centralized Task Management",
+    description:
+      "Manage all maintenance and operational tasks from one unified dashboard.",
+  },
+  {
+    icon: BarChart3,
+    title: "Performance Analytics",
+    description:
+      "Monitor team performance and property health with real-time analytics.",
+  },
+  {
+    icon: Clock,
+    title: "Faster Resolution Times",
+    description:
+      "Reduce response delays with automated task routing and reminders.",
+  },
+  {
+    icon: Bell,
+    title: "Smart Notifications",
+    description:
+      "Automatic alerts keep tenants and staff informed at every stage.",
+  },
+  {
+    icon: FileText,
+    title: "Clear Documentation",
+    description:
+      "All requests, actions, and outcomes are logged for transparency.",
+  },
+  {
+    icon: CheckCircle,
+    title: "Reliable & Consistent Workflows",
+    description:
+      "Ensure every issue is handled consistently with predefined processes.",
   },
 ];
 
 const FeaturesGrid = () => {
+  const [showAll, setShowAll] = useState(false);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+
+  const visibleFeatures = showAll ? features : features.slice(0, 6);
+
+  const handleToggle = () => {
+    setShowAll((prev) => !prev);
+
+    // 👇 When collapsing, smoothly scroll back to top of section
+    if (showAll && sectionRef.current) {
+      sectionRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   return (
-    <section id="features" className="section-padding bg-secondary/30 overflow-hidden relative">
+    <section
+      id="features"
+      ref={sectionRef}
+      className="section-padding bg-secondary/30 overflow-hidden relative"
+    >
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white via-transparent to-transparent opacity-50 pointer-events-none"></div>
 
       <div className="container-narrow mx-auto relative z-10">
-        {/* Section Header */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -63,20 +133,21 @@ const FeaturesGrid = () => {
             <span className="text-gradient-orange">Challenges</span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            Everything you need to manage properties smoothly — without spreadsheets, long follow-ups, or confusion.
+            Everything you need to manage properties smoothly — without
+            spreadsheets, long follow-ups, or confusion.
           </p>
         </motion.div>
 
-        {/* Features Grid */}
+        {/* Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {features.map((feature, index) => (
+          {visibleFeatures.map((feature, index) => (
             <motion.div
               key={feature.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 relative overflow-hidden flex flex-col items-center sm:items-start"
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              className="group bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 relative overflow-hidden"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-orange-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
 
@@ -84,14 +155,21 @@ const FeaturesGrid = () => {
                 <feature.icon className="w-7 h-7 text-orange-500 group-hover:text-white transition-colors duration-300" />
               </div>
 
-              <h3 className="font-display text-xl font-bold text-foreground mb-3 group-hover:text-orange-600 transition-colors duration-300 text-center sm:text-left">
+              <h3 className="font-display text-xl font-bold text-foreground mb-3 group-hover:text-orange-600 transition-colors duration-300">
                 {feature.title}
               </h3>
-              <p className="text-muted-foreground leading-relaxed group-hover:text-gray-600 text-center sm:text-left">
+              <p className="text-muted-foreground leading-relaxed">
                 {feature.description}
               </p>
             </motion.div>
           ))}
+        </div>
+
+        {/* Button */}
+        <div className="text-center mt-14">
+          <button onClick={handleToggle} className="btn-primary">
+            {showAll ? "Show Less" : "View All Features"}
+          </button>
         </div>
       </div>
     </section>
@@ -99,3 +177,4 @@ const FeaturesGrid = () => {
 };
 
 export default FeaturesGrid;
+

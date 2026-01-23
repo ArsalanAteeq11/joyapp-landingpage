@@ -6,7 +6,7 @@ const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: "",
+    message: "Dear Joy Team,  Please contact me and I would like to know more about your Joy App.",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
