@@ -78,16 +78,17 @@ const features = [
   },
   {
     icon: FileText,
-    title: "Clear Documentation",
+    title: "Comprehensive Activity Logs",
     description:
-      "All requests, actions, and outcomes are logged for transparency.",
+      "Every task, update, and resolution is recorded in a unified log, giving you full transparency and audit-ready visibility.",
   },
   {
     icon: CheckCircle,
-    title: "Reliable & Consistent Workflows",
+    title: "Automated Workflow Assurance",
     description:
-      "Ensure every issue is handled consistently with predefined processes.",
+      "Smart rules enforce consistent handling of issues, reducing errors and ensuring every request is resolved efficiently.",
   },
+
 ];
 
 const FeaturesGrid = () => {
